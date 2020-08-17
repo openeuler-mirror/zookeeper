@@ -16,7 +16,7 @@ Source2: zookeeper.service
 Source3: zookeeper.sysconfig
 Source4: log4j.properties 
 BuildRoot: %{_tmppath}/%{name}-%{rel_ver}-%{release}-root
-BuildRequires: java-1.8.0-openjdk,java-1.8.0-openjdk-devel,maven-local,hostname
+BuildRequires: java-1.8.0-openjdk-devel,maven,hostname
 Requires: java-1.8.0-openjdk,systemd
 
 %description
