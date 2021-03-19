@@ -1,16 +1,16 @@
-%define rel_ver 3.6.1
-%define pkg_ver 1.0
+%define rel_ver 3.6.2
+%define pkg_ver 2.0
 %define _prefix /opt/zookeeper
 
 Summary: High-performance coordination service for distributed applications.
-Name: apache-zookeeper
+Name: zookeeper
 Version: %{rel_ver}
 Release: %{pkg_ver}%{?dist}
-License: Apache License v2.0
+License: Apache-2.0 and OpenSSL and SSLeay and MIT and BSD
 Group: Applications/Databases
 URL: https://www.apache.org/dist/zookeeper/
 BuildArch: noarch
-Source0: https://www.apache.org/dist/zookeeper/zookeeper-%{rel_ver}/apache-zookeeper-%{rel_ver}.tar.gz
+Source0: zookeeper-release-%{rel_ver}.tar.gz
 Source1: zoo.cfg
 Source2: zookeeper.service
 Source3: zookeeper.sysconfig
@@ -23,11 +23,12 @@ Requires: java-1.8.0-openjdk,systemd
 ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services.
 
 %prep
-%setup -q
+%setup -q -n zookeeper-release-%{version}
 
 %build
 mvn -DskipTests package
-tar xvf zookeeper-assembly/target/%{name}-%{rel_ver}-bin.tar.gz -C .
+tar xvf zookeeper-assembly/target/apache-%{name}-%{rel_ver}-bin.tar.gz -C .
+cp -r apache-%{name}-%{rel_ver}-bin/lib .
 
 %install
 mkdir -p %{buildroot}%{_prefix}/bin
@@ -36,9 +37,9 @@ mkdir -p %{buildroot}%{_prefix}/conf
 mkdir -p %{buildroot}%{_localstatedir}/log/zookeeper
 mkdir -p %{buildroot}%{_localstatedir}/lib/zookeeper/data
 
-install -p -D -m 755 %{name}-%{rel_ver}-bin/bin/*.sh %{buildroot}%{_prefix}/bin
-install -p -D -m 644 %{name}-%{rel_ver}-bin/lib/*.jar %{buildroot}%{_prefix}/lib
-install -p -D -m 644 %{name}-%{rel_ver}-bin/conf/* %{buildroot}%{_prefix}/conf
+install -p -D -m 755 bin/*.sh %{buildroot}%{_prefix}/bin
+install -p -D -m 644 lib/*.jar %{buildroot}%{_prefix}/lib
+install -p -D -m 644 conf/* %{buildroot}%{_prefix}/conf
 install -p -D -m 644 %{S:1} %{buildroot}%{_prefix}/conf/zoo.cfg
 install -p -D -m 644 %{S:2} %{buildroot}%{_unitdir}/zookeeper.service
 install -p -D -m 644 %{S:3} %{buildroot}%{_sysconfdir}/sysconfig/zookeeper
