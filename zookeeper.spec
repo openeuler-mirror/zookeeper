@@ -1,12 +1,12 @@
 %define rel_ver 3.6.1
-%define pkg_ver 1.0
+%define pkg_ver 2.0
 %define _prefix /opt/zookeeper
 
 Summary: High-performance coordination service for distributed applications.
 Name: apache-zookeeper
 Version: %{rel_ver}
-Release: %{pkg_ver}%{?dist}
-License: Apache License v2.0
+Release: %{pkg_ver}
+License: Apache-2.0 and OpenSSL and SSLeay and MIT and BSD
 Group: Applications/Databases
 URL: https://www.apache.org/dist/zookeeper/
 BuildArch: noarch
@@ -71,5 +71,8 @@ exit 0
 %systemd_postun_with_restart zookeeper.service
 
 %changelog
+* Thu Mar 25 2021 baizhonggui <baizhonggui@huawei.com> - 2.0
+- Delete %{dist} in Release
+ 
 * Sun Jun 28 2020 hao zhang <unioah@isrc.iscas.ac.cn> - 1.0
 - Add zookeeper.service
