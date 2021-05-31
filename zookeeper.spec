@@ -1,5 +1,5 @@
 %define rel_ver 3.6.1
-%define pkg_ver 2.0
+%define pkg_ver 2.1
 %define _prefix /opt/zookeeper
 
 Summary: High-performance coordination service for distributed applications.
@@ -71,6 +71,9 @@ exit 0
 %systemd_postun_with_restart zookeeper.service
 
 %changelog
+* Thu Apr 1 2021 zhangshaoning <zhangshaoning@uniontech.com> - 2.1
+- Repair status failure after stopping service
+
 * Thu Mar 25 2021 baizhonggui <baizhonggui@huawei.com> - 2.0
 - Delete %{dist} in Release
  
