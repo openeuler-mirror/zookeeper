@@ -1,5 +1,5 @@
 %define rel_ver 3.6.2
-%define pkg_ver 2.2
+%define pkg_ver 2.3
 %define _prefix /opt/zookeeper
 
 Summary: High-performance coordination service for distributed applications.
@@ -15,15 +15,23 @@ Source1: zoo.cfg
 Source2: zookeeper.service
 Source3: zookeeper.sysconfig
 Source4: log4j.properties 
+Source5: xmvn-reactor
 BuildRoot: %{_tmppath}/%{name}-%{rel_ver}-%{release}-root
-BuildRequires: java-1.8.0-openjdk-devel,maven,hostname
+BuildRequires: java-1.8.0-openjdk-devel,maven,hostname,maven-local
 Requires: java-1.8.0-openjdk,systemd
+Provides: apache-zookeeper
+Provides: mvn(org.apche.zookeeper:zookeeper)
 
 %description
 ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services.
 
 %prep
 %setup -q -n zookeeper-release-%{version}
+cp %{SOURCE5} ./.xmvn-reactor
+echo `pwd` > absolute_prefix.log
+sed -i 's/\//\\\//g' absolute_prefix.log
+absolute_prefix=`head -n 1 absolute_prefix.log`
+sed -i 's/absolute-prefix/'"$absolute_prefix"'/g' .xmvn-reactor
 
 %build
 mvn -DskipTests package
@@ -31,6 +39,8 @@ tar xvf zookeeper-assembly/target/apache-%{name}-%{rel_ver}-bin.tar.gz -C .
 cp -r apache-%{name}-%{rel_ver}-bin/lib .
 
 %install
+%mvn_install
+
 mkdir -p %{buildroot}%{_prefix}/bin
 mkdir -p %{buildroot}%{_prefix}/lib
 mkdir -p %{buildroot}%{_prefix}/conf
@@ -48,7 +58,7 @@ install -p -D -m 644 %{S:4} %{buildroot}%{_prefix}/conf/log4j.properties
 %clean
 rm -rf %{buildroot}
 
-%files
+%files -f .mfiles
 %defattr(-,root,root)
 %attr(-,zookeeper,zookeeper) %{_prefix}
 %dir %attr(744, zookeeper, zookeeper) %{_localstatedir}/log/zookeeper
@@ -72,6 +82,9 @@ exit 0
 %systemd_postun_with_restart zookeeper.service
 
 %changelog
+* Thu Jun 24 2021 Ge Wang <wangge20@huawei.com> - 2.3
+- Add provides item apache-zookeeper and add packages to system default java package directory
+
 * Fri Jun 18 2021 lingsheng <lingsheng@huawei.com> - 2.2
 - Fix reload service failure
 
