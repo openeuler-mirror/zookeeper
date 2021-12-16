@@ -1,5 +1,5 @@
 %define rel_ver 3.6.1
-%define pkg_ver 2.2
+%define pkg_ver 2.3
 %define _prefix /opt/zookeeper
 
 Summary: High-performance coordination service for distributed applications.
@@ -71,6 +71,9 @@ exit 0
 %systemd_postun_with_restart zookeeper.service
 
 %changelog
+* Thu Dec 16 2021 wangkai <wangkai385@huawei.com> - 2.3
+- This package depends on log4j.After the log4j vulnerability CVE-2021-44228 is fixed,the version needs to be rebuild.
+
 * Fri Jun 18 2021 lingsheng <lingsheng@huawei.com> - 2.2
 - Fix reload service failure
 
