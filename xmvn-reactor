@@ -4,8 +4,8 @@
     <artifact>
       <groupId>org.apache.zookeeper</groupId>
       <artifactId>zookeeper</artifactId>
-      <version>3.6.2</version>
-      <path>absolute-prefix/zookeeper-server/target/zookeeper-3.6.2.jar</path>
+      <version>3.8.0</version>
+      <path>absolute-prefix/zookeeper-server/target/zookeeper-3.8.0.jar</path>
       <properties>
         <type>jar</type>
         <requiresJava>1.6</requiresJava>
@@ -15,7 +15,7 @@
       <groupId>org.apache.zookeeper</groupId>
       <artifactId>zookeeper</artifactId>
       <extension>pom</extension>
-      <version>3.6.2</version>
+      <version>3.8.0</version>
       <path>absolute-prefix/zookeeper-server/pom.xml</path>
       <properties>
         <type>jar</type>
@@ -26,8 +26,8 @@
     <artifact>
       <groupId>org.apache.zookeeper</groupId>
       <artifactId>zookeeper-jute</artifactId>
-      <version>3.6.2</version>
-      <path>absolute-prefix/zookeeper-jute/target/zookeeper-jute-3.6.2.jar</path>
+      <version>3.8.0</version>
+      <path>absolute-prefix/zookeeper-jute/target/zookeeper-jute-3.8.0.jar</path>
       <properties>
         <type>jar</type>
         <requiresJava>1.6</requiresJava>
@@ -37,7 +37,7 @@
       <groupId>org.apache.zookeeper</groupId>
       <artifactId>zookeeper-jute</artifactId>
       <extension>pom</extension>
-      <version>3.6.2</version>
+      <version>3.8.0</version>
       <path>absolute-prefix/zookeeper-jute/pom.xml</path>
       <properties>
         <type>jar</type>
@@ -48,8 +48,8 @@
     <artifact>
       <groupId>org.apache.zookeeper</groupId>
       <artifactId>zookeeper-prometheus-metrics</artifactId>
-      <version>3.6.2</version>
-      <path>absolute-prefix/zookeeper-metrics-providers/zookeeper-prometheus-metrics/target/zookeeper-prometheus-metrics-3.6.2.jar</path>
+      <version>3.8.0</version>
+      <path>absolute-prefix/zookeeper-metrics-providers/zookeeper-prometheus-metrics/target/zookeeper-prometheus-metrics-3.8.0.jar</path>
       <properties>
         <type>jar</type> 
         <requiresJava>1.6</requiresJava>
@@ -59,7 +59,7 @@
       <groupId>org.apache.zookeeper</groupId>
       <artifactId>zookeeper-prometheus-metrics</artifactId>
       <extension>pom</extension>
-      <version>3.6.2</version>
+      <version>3.8.0</version>
       <path>absolute-prefix/zookeeper-metrics-providers/zookeeper-prometheus-metrics/pom.xml</path> 
       <properties> 
         <type>jar</type>
