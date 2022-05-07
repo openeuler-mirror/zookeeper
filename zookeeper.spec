@@ -1,6 +1,7 @@
-%define rel_ver 3.6.2
-%define pkg_ver 2.4
+%define rel_ver 3.8.0
+%define pkg_ver 1
 %define _prefix /opt/zookeeper
+%global debug_package %{nil}
 
 Summary: High-performance coordination service for distributed applications.
 Name: zookeeper
@@ -9,8 +10,7 @@ Release: %{pkg_ver}
 License: Apache-2.0 and OpenSSL and SSLeay and MIT and BSD
 Group: Applications/Databases
 URL: https://www.apache.org/dist/zookeeper/
-BuildArch: noarch
-Source0: zookeeper-release-%{rel_ver}.tar.gz
+Source0: https://github.com/apache/zookeeper/archive/refs/tags/release-3.8.0-1.tar.gz
 Source1: zoo.cfg
 Source2: zookeeper.service
 Source3: zookeeper.sysconfig
@@ -26,7 +26,7 @@ Provides: mvn(org.apche.zookeeper:zookeeper)
 ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services.
 
 %prep
-%setup -q -n zookeeper-release-%{version}
+%setup -q -n zookeeper-release-%{version}-1
 cp %{SOURCE5} ./.xmvn-reactor
 echo `pwd` > absolute_prefix.log
 sed -i 's/\//\\\//g' absolute_prefix.log
@@ -82,6 +82,9 @@ exit 0
 %systemd_postun_with_restart zookeeper.service
 
 %changelog
+* Thu May 5 2022 xiexing <xiexing4@hisilicon.com> - 3.8.0-1
+- update version
+
 * Tue Oct 24 2021 wangyue <wangyue92@huawei.com> - 2.4
 - Add systemd to buildrequire because %{_unitdir} can't recognize
 
