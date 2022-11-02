@@ -1,9 +1,9 @@
 %define rel_ver 3.6.1
-%define pkg_ver 2.4
+%define pkg_ver 2.5
 %define _prefix /opt/zookeeper
 
 Summary: High-performance coordination service for distributed applications.
-Name: apache-zookeeper
+Name: zookeeper
 Version: %{rel_ver}
 Release: %{pkg_ver}
 License: Apache-2.0 and OpenSSL and SSLeay and MIT and BSD
@@ -23,11 +23,11 @@ Requires: java-1.8.0-openjdk,systemd
 ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services.
 
 %prep
-%setup -q
+%setup -q -n apache-zookeeper-3.6.1
 
 %build
 mvn -DskipTests package
-tar xvf zookeeper-assembly/target/%{name}-%{rel_ver}-bin.tar.gz -C .
+tar xvf zookeeper-assembly/target/apache-%{name}-%{rel_ver}-bin.tar.gz -C .
 
 %install
 mkdir -p %{buildroot}%{_prefix}/bin
@@ -36,9 +36,9 @@ mkdir -p %{buildroot}%{_prefix}/conf
 mkdir -p %{buildroot}%{_localstatedir}/log/zookeeper
 mkdir -p %{buildroot}%{_localstatedir}/lib/zookeeper/data
 
-install -p -D -m 755 %{name}-%{rel_ver}-bin/bin/*.sh %{buildroot}%{_prefix}/bin
-install -p -D -m 644 %{name}-%{rel_ver}-bin/lib/*.jar %{buildroot}%{_prefix}/lib
-install -p -D -m 644 %{name}-%{rel_ver}-bin/conf/* %{buildroot}%{_prefix}/conf
+install -p -D -m 755 apache-%{name}-%{rel_ver}-bin/bin/*.sh %{buildroot}%{_prefix}/bin
+install -p -D -m 644 apache-%{name}-%{rel_ver}-bin/lib/*.jar %{buildroot}%{_prefix}/lib
+install -p -D -m 644 apache-%{name}-%{rel_ver}-bin/conf/* %{buildroot}%{_prefix}/conf
 install -p -D -m 644 %{S:1} %{buildroot}%{_prefix}/conf/zoo.cfg
 install -p -D -m 644 %{S:2} %{buildroot}%{_unitdir}/zookeeper.service
 install -p -D -m 644 %{S:3} %{buildroot}%{_sysconfdir}/sysconfig/zookeeper
@@ -71,6 +71,9 @@ exit 0
 %systemd_postun_with_restart zookeeper.service
 
 %changelog
+* Wed Nov 2 2022 xiexing <xiexing4@hisilicon.com> - 2.5
+- change Name apache-zookeeper to zookeeper
+
 * Fri Feb 25 2022 wangkai <wangkai385@huawei.com> - 2.4
 - Rebuild for fix log4j1.x cves
 
