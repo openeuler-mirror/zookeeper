@@ -71,7 +71,7 @@ exit 0
 %systemd_postun_with_restart zookeeper.service
 
 %changelog
-* Wed Nov 2 2022 xiexing <xiexing4@hisilicon.com> - 2.5
+* Wed Nov 2 2022 xiexing <xiexing4@hisilicon.com> - 3.6.1-2.5
 - change Name apache-zookeeper to zookeeper
 
 * Fri Feb 25 2022 wangkai <wangkai385@huawei.com> - 2.4
