@@ -1,5 +1,5 @@
 %define rel_ver 3.6.2
-%define pkg_ver 2.3
+%define pkg_ver 2.4
 %define _prefix /opt/zookeeper
 
 Summary: High-performance coordination service for distributed applications.
@@ -82,6 +82,9 @@ exit 0
 %systemd_postun_with_restart zookeeper.service
 
 %changelog
+* Mon Nov 7 2022 MacChen1 <mac.chenqiang@huawei.com> - 3.6.2-2.4
+- Fix the build problem
+
 * Thu Jun 24 2021 Ge Wang <wangge20@huawei.com> - 2.3
 - Add provides item apache-zookeeper and add packages to system default java package directory
 
