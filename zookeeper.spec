@@ -17,7 +17,7 @@ Source3: zookeeper.sysconfig
 Source4: log4j.properties 
 Source5: xmvn-reactor
 BuildRoot: %{_tmppath}/%{name}-%{rel_ver}-%{release}-root
-BuildRequires: java-1.8.0-openjdk-devel,maven,hostname,maven-local
+BuildRequires: java-1.8.0-openjdk-devel,maven,hostname,maven-local,systemd
 Requires: java-1.8.0-openjdk,systemd
 Provides: apache-zookeeper
 Provides: mvn(org.apche.zookeeper:zookeeper)
